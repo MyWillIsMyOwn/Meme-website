@@ -20,31 +20,36 @@
         </nav>
     </header>
     <div class="main-frame">
-        <div class="main-content-frame">
-            <div class="user-bar">
-                <a href="" class="user">
-                    <span class="name">Username</span>
-                </a>
-            </div>
-            <div class="description-content">
-                <h2>
-                    <a href="" class="title">Title</a>
-                </h2>
-            </div>
-            <div class="meme-bar">
-                <div class="meme"><img src="{%static 'images/1003.jpg'%}" alt="meme" width="610"></div>
-            </div>
-            <div class="lac">
-                <button type="button" class="like">Like</button>
-                <span class="like-number">+2137</span>
-                <a href=""><button type="button" class="like">Comment</button></a>
-            </div>
+        <div class="add">
+            <a href="" class="add-content">+ Add</a>
         </div>
-
+        {%for photo in photos%}
+        
+            <div class="main-content-frame">
+                <div class="user-bar">
+                    <a href="" class="user">
+                        <span class="name">User1</span>
+                    </a>
+                </div>
+                <div class="description-content">
+                    <h2>
+                        <a href="" class="title">{{photo.title}}</a>
+                    </h2>
+                </div>
+                <div class="meme-bar">
+                    <div class="meme"><img src="{%static 'images/1003.jpg'%}" alt="meme" width="610"></div>
+                </div>
+                <div class="lac">
+                    <button type="button" class="like">Like</button>
+                    <span class="like-number">+2137</span>
+                    <a href=""><button type="button" class="like">Comment</button></a>
+                </div>
+            </div>
+        {%endfor%}
         <div class="main-content-frame">
             <div class="user-bar">
                 <a href="" class="user">
-                    <span class="name">Username</span>
+                    <span class="name">User2</span>
                 </a>
             </div>
             <div class="description-content">
@@ -65,7 +70,7 @@
         <div class="main-content-frame">
             <div class="user-bar">
                 <a href="" class="user">
-                    <span class="name">Username</span>
+                    <span class="name">User3</span>
                 </a>
             </div>
             <div class="description-content">
@@ -81,6 +86,9 @@
                 <span class="like-number">+2137</span>
                 <a href=""><button type="button" class="like">Comment</button></a>
             </div>
+        </div>
+        <div class="next-side">
+            <a href="" class="next-page">Next side</a>
         </div>
 
     </div>
