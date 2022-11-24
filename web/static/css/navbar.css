@@ -37,7 +37,7 @@ header {
     background: grey;
 }
 
-body{
+html{
     background: grey;
 }
 .add{
@@ -51,16 +51,15 @@ body{
     margin: auto;
     margin-bottom: 100px;
     max-width: 750px;
-    width: 100%;
     background: #71687C
 }
 .main-content-frame .user-bar{
     background: black;
     max-width: 750px;
-    padding: 10 70;
-    height: 40px;
     display: flex;
     align-items: center;
+    padding-left: 70px;
+    height: 40px;
 }
 .main-content-frame .description-content{
     max-width: 610px;
@@ -84,7 +83,7 @@ body{
 }
 
 .main-content-frame .lac{
-    max-width: 610px;
+
     height: 40px;
     display: flex;
     justify-content: center;
