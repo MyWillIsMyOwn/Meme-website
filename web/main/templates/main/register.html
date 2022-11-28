@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+{%load static%}
+
+{% block register %}
+<body>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/account.css'%}">
+        
+        
+        <div class="main">
+            <div class="container">
+                <div class="heading">Registration</div>
+                <form method="POST">
+                    <!-- csrf_token allows to allow django to handle sumbited data-->
+                    {% csrf_token %}
+                    <div class="card-details">
+                        <div class="card-box">
+                            <span class="details">Email</span>
+                            {{user_creation_form.email}}
+                        </div>
+                        <div class="card-box">
+                            <span class="details">Username</span>
+                            {{user_creation_form.username}}
+                        </div>
+                        <div class="card-box">
+                            <span class="details">Password</span>
+                            {{user_creation_form.password1}}
+                        </div>
+                        <div class="card-box">
+                            <span class="details">Confirm Password</span>
+                            {{user_creation_form.password2}}
+                        </div>
+                    </div>
+                    
+                    {% for message in messages %}
+                        <p id="messages">{{message}}</p>
+                    {% endfor %}
+                        
+                    <div class="button">
+                        <input type="submit" name="Create User", value="Register">
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+{% endblock register %}
+    
+
+

@@ -3,61 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>MySite</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}">
 </head>
-<body>
-    <header>
-        <div>
-            <a href="127.0.0.1:8000">
-                <img src="{%static 'images/Xd.png'%}" alt="Xd" class="logo">
-            </a>
-        </div>
-        <nav class="navbar">
-            <ul>
-                <li><a href="">Log in</a></li>
-                <li><a href="">Register</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="main-frame">
-        <div class="add">
-            <a href="" class="add-content">+ Add</a>
-        </div>
-        {%for photo in single_page%}            
-            <div class="main-content-frame">
-                <div class="user-bar">
-                    <a href="" class="user">
-                        <span class="name">User1</span>
-                    </a>
-                </div>
-
-                <div class="description-content">
-                    <h2>
-                        <a href="" class="title">{{photo.title}}</a>
-                    </h2>
-                </div>
-                <div class="meme-bar">
-                    <div class="meme"><img src="{{photo.picture.url}}" alt="meme" width="610"></div>
-                </div>
-                <div class="lac">
-                    <button type="button" class="like">Like</button>
-                    <span class="like-number">+2137</span>
-                    <a href=""><button type="button" class="like">Comment</button></a>
-                </div>
+    <body>
+        <header>
+            <div>
+                <a href="{% url 'home' %}">
+                    <img src="{%static 'images/Xd.png'%}" alt="Xd" class="logo">
+                </a>
             </div>
-        {%endfor%}
-        <div class="next-side">
-            <a href="" class="next-page">Next side</a>
-        </div>    
-
-        {% if single_page.has_previous %}
-            <a href="?page={{ single_page.previous_page_number }}" class="page">Previous side</a>
-        {% endif %}
-        <li>Page {{single_page.number}}</li>
-        {% if single_page.has_next %}
-            <a href="?page={{ single_page.next_page_number }}" class="page">Next side</a>
-        {% endif %}
+            <nav class="navbar">
+                <ul>              
+                    {% if user.is_authenticated %}
+                        <li><span>Hello, {{request.user}}</span></li>
+                        <li><a href="{% url 'home' %}">Log out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login_page' %}">Log in</a></li>
+                        <li><a href="{% url 'register_page' %}">Register</a></li>
+                    {% endif %}        
+                </ul>
+            </nav>
+        </header>
+        
+        {% block main %}            
+        {% endblock main %}
+        
+        {% block upload %}           
+        {% endblock upload %}
+        
+        {% block login %}         
+        {% endblock login %}
+        
+        {% block register %}         
+        {% endblock register %}
             
-    </div>
-</body>
+    </body>
 </html>
