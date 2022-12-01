@@ -1,0 +1,4 @@
+.idea/gitignore
+web/main/__pycache__/
+web/main/migrations
+web/media
