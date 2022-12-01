@@ -1,8 +1,26 @@
 {% extends 'main/base.html' %}
-
+{%load static%}
 {% block upload %}
-<html>
-    <h1>HIHI</h1>
-</html>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/upload.css'%}">
+        <div class="main-content">
+            <div class="heading">Upload</div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="text-field">
+                        <span class="details">Enter title</span>
+                        <input required type="text" placeholder="Title" name="Title">
+                        <input type="text" name="Username" value="{{request.user}}" hidden>
+                    </div>
+                    <div class="buttons">    
+                        <div class="button">
+                            <input id="files" required type="file" name="Browser">
+                        </div>
+                        <div class="button">
+                            <input type="submit" name="Upload", value="Upload">
+                        </div>
+                    </div>    
+                </form>
+        </div>
+    
 {% endblock upload %}
     

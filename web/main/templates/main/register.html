@@ -31,9 +31,20 @@
                         </div>
                     </div>
                     
-                    {% for message in messages %}
-                        <p id="messages">{{message}}</p>
+                    
+                    {% for err in user_creation_form.email.errors %}
+                        {{err}}
                     {% endfor %}
+                    {% for err in user_creation_form.username.errors %}
+                        {{err}}
+                    {% endfor %}
+                    {% for err in user_creation_form.password1.errors %}
+                        {{err}}
+                    {% endfor %}
+                    {% for err in user_creation_form.password2.errors %}
+                        {{err}}
+                    {% endfor %}
+                        
                         
                     <div class="button">
                         <input type="submit" name="Create User", value="Register">

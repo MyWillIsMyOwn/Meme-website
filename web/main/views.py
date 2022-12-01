@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Photos
+from .models import Photos, Comment
 from django.core.paginator import Paginator
 from .forms import CreateUserForm, LoginUserForm
 from django.contrib import messages
@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 def home(response):
     photos = Photos.objects.all()  # collect all data from database
-    pagination = Paginator(photos, 2)
+    pagination = Paginator(photos[::-1], 6)
     page = response.GET.get("page")
     single_page = pagination.get_page(page)
     context = {
@@ -59,4 +59,22 @@ def register_page(response):
 
 @login_required(login_url="/login")
 def upload(response):
+    if response.method == "POST":
+        data = response.POST
+        image = response.FILES.get("Browser")
+
+        print("data", data)
+        print("image", image)
+
+        Photos.objects.create(
+            title=data["Title"], owner=data["Username"], picture=image
+        )
+        return redirect("/")
     return render(response, "main/upload.html", {})
+
+
+@login_required(login_url="/login")
+def meme(response, id):
+    photo = Photos.objects.get(id=id)
+    context = {"photo": photo}
+    return render(response, "main/single.html", context)

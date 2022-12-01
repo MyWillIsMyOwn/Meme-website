@@ -8,9 +8,22 @@
 from django.db import models
 
 
+class Comments(models.Model):
+    idcomment = models.AutoField(db_column='idComment', primary_key=True)  # Field name made lowercase.
+    owner = models.CharField(max_length=45, blank=True, null=True)
+    text = models.CharField(max_length=45, blank=True, null=True)
+    date_add = models.DateField(blank=True, null=True)
+    photos = models.ForeignKey('Photos', models.DO_NOTHING, db_column='Photos_id')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Comments'
+
+
 class Photos(models.Model):
     title = models.CharField(max_length=45)
-    picture = models.TextField()
+    picture = models.CharField(max_length=200, blank=True, null=True)
+    owner = models.CharField(max_length=45)
 
     class Meta:
         managed = False
@@ -129,3 +142,15 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+
+class MainComment(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    owner_name = models.CharField(max_length=200)
+    body = models.CharField(max_length=255)
+    add_date = models.DateTimeField()
+    photo_id = models.BigIntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'main_comment'

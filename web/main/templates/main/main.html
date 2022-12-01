@@ -7,29 +7,34 @@
     <html lang="en">
         <body>
             <div class="main-frame">
+                {% if user.is_authenticated %}
                 <div class="add">
                     <a href="/upload" class="add-content">+ Add</a>
                 </div>
+                {% else %}
+                <div class="add">
+                    <a href="/upload" class="add-content">Want do add some content? Log in</a>
+                </div>
+                {% endif %} 
                 {%for photo in single_page%}            
                     <div class="main-content-frame">
                         <div class="user-bar">
                             <a href="" class="user">
-                                <span class="name">User1</span>
+                                <span class="name">{{photo.owner}}</span>
                             </a>
                         </div>
-
                         <div class="description-content">
                             <h2>
-                                <a href="" class="title">{{photo.title}}</a>
+                                <a href="{% url 'meme' photo.id %}" class="title">{{photo.title}}</a>
                             </h2>
                         </div>
                         <div class="meme-bar">
-                            <div class="meme"><img src="{{photo.picture.url}}" alt="meme" width="610"></div>
+                            <div class="meme"><a href="{% url 'meme' photo.id %}"><img src="{{photo.picture.url}}" alt="meme"></a></div>
                         </div>
                         <div class="lac">
                             <button type="button" class="like">Like</button>
                             <span class="like-number">+2137</span>
-                            <a href=""><button type="button" class="like">Comment</button></a>
+                            <a href="{% url 'meme' photo.id %}"><button type="button" class="like">Comment</button></a>
                         </div>
                     </div>
                 {%endfor%}

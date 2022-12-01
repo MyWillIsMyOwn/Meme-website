@@ -16,7 +16,7 @@
                 <ul>              
                     {% if user.is_authenticated %}
                         <li><span>Hello, {{request.user}}</span></li>
-                        <li><a href="{% url 'home' %}">Log out</a></li>
+                        <li><a href="{% url 'logout' %}">Log out</a></li>
                     {% else %}
                         <li><a href="{% url 'login_page' %}">Log in</a></li>
                         <li><a href="{% url 'register_page' %}">Register</a></li>
@@ -36,6 +36,8 @@
         
         {% block register %}         
         {% endblock register %}
-            
+        
+        {% block single %}  
+        {% endblock single %}
     </body>
 </html>

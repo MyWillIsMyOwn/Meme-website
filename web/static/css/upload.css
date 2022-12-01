@@ -1,45 +1,31 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.container{
+.main-content{
     margin-top: 300px;
     position: fixed;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    max-width: 500px;
+    max-width: 700px;
     width: 100%;
     padding: 25px 30px;
     border-radius: 25px;
     background: black;
 }
-.container .heading{
+.main-content .heading{
     font-size: 25px;
     font-weight: 500;
     position: relative;
     text-align: center;
     padding: 0 0 20px 0;
 }
-
-.container form .card-details{
+.main-content .text-field{
     margin-top: 25px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-form .card-details .card-box{
     width: calc(100%/2-20px);
     margin-bottom: 15px;
 }
-.card-details .card-box .details{
-    display: block;
-    font-weight: 500;
-    margin-bottom: 5px;
-}
-.card-details .card-box .form-control{
+.main-content .text-field input{
     height: 45px;
     width: 100%;
     outline: none;
@@ -50,14 +36,25 @@ form .card-details .card-box{
     border-bottom-width: 2px;
     transition: all 0.3s ease;
 }
-form .button{
-    text-align: center;
+.main-content .text-field .details{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
 }
-form .button input{
-    padding: 10px 0;
+form .buttons{
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+form .buttons .button input{
+    text-align: center;
+    width: calc(100%/2-20px);
+    margin-bottom: 15px;
+    padding: 10px 20px 10px 20px;
     margin-top: 10px;
     height: 5%;
-    width: 50%;
     outline: none;
     color: #fff;
     border: none;
@@ -67,20 +64,19 @@ form .button input{
     letter-spacing: 1px;
     background: linear-gradient(135deg, #71687C, black);
 }
-
-
-
-@media (max-width: 500px){
-    .container{
-        max-width: 100%;
-    }
-    form .card-details .card-box{
-        margin-bottom: 15px;
-        width: 99%
-    }
-    .container form .card-details{
-        max-height: 160px;
-        overflow: scroll;
-        overflow-x: hidden;
-    }
+form .buttons .button button{
+    text-align: center;
+    width: calc(100%/2-20px);
+    margin-bottom: 15px;
+    padding: 10px 20px 10px 20px;
+    margin-top: 10px;
+    height: 5%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #71687C, black);
 }

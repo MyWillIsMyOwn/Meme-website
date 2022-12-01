@@ -4,16 +4,14 @@
 body{
     background: linear-gradient(135deg, #71687C, black);
 }
-.add{
-    display: flex;
-    justify-content: center;
-    padding: 110 0 50 0;
-}
+
 
 
 .main-content-frame{
+    position: absolute;
     margin: auto;
-    margin-bottom: 100px;
+    margin-top: 100px;
+
     max-width: 750px;
     border-radius: 25px;
     background: #71687C
