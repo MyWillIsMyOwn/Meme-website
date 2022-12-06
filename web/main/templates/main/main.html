@@ -8,13 +8,13 @@
         <body>
             <div class="main-frame">
                 {% if user.is_authenticated %}
-                <div class="add">
-                    <a href="/upload" class="add-content">+ Add</a>
-                </div>
-                {% else %}
-                <div class="add">
-                    <a href="/upload" class="add-content">Want do add some content? Log in</a>
-                </div>
+                    <div class="add">
+                        <a href="/upload" class="add-content">+ Add</a>
+                    </div>
+                    {% else %}
+                    <div class="add">
+                        <a href="/upload" class="add-content">Wanna add meme, log in!</a>
+                    </div>
                 {% endif %} 
                 {%for photo in single_page%}            
                     <div class="main-content-frame">
@@ -32,19 +32,23 @@
                             <div class="meme"><a href="{% url 'meme' photo.id %}"><img src="{{photo.picture.url}}" alt="meme"></a></div>
                         </div>
                         <div class="lac">
-                            <button type="button" class="like">Like</button>
-                            <span class="like-number">+2137</span>
-                            <a href="{% url 'meme' photo.id %}"><button type="button" class="like">Comment</button></a>
+                            {% if user not in photo.likes.all %}
+                            <a href="{% url 'meme' photo.id %}"><button type="submit" class="liked" name="photo_id" value="{{photo.id}}">+ {{photo.likes.all.count}}</button></a>
+                            {% else %}
+                            <a href="{% url 'meme' photo.id %}"><button type="submit" class="unliked" name="photo_id" value="{{photo.id}}">+ {{photo.likes.all.count}}</button></a>
+                            {% endif %} 
+                            <a href="{% url 'meme' photo.id %}"><button type="button" class="comment">Comment</button></a>
                         </div>
                     </div>
                 {%endfor%}
-                <div class="next-side">
+                <div class="paginating">
                     {% if single_page.has_previous %}
-                        <a href="?page={{ single_page.previous_page_number }}" class="page">Previous side</a>
+                    <div class="page"><a href="?page={{ single_page.previous_page_number }}" class="page">Previous side</a></div>
+                        
                     {% endif %}
-                        <li>Page {{single_page.number}}</li>
                     {% if single_page.has_next %}
-                        <a href="?page={{ single_page.next_page_number }}" class="page">Next side</a>
+                    <div class="page"><a href="?page={{ single_page.next_page_number }}" class="page">Next side</a></div>
+                        
                     {% endif %}   
                 </div>                                 
             </div>

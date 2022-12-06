@@ -8,28 +8,6 @@
 from django.db import models
 
 
-class Comments(models.Model):
-    idcomment = models.AutoField(db_column='idComment', primary_key=True)  # Field name made lowercase.
-    owner = models.CharField(max_length=45, blank=True, null=True)
-    text = models.CharField(max_length=45, blank=True, null=True)
-    date_add = models.DateField(blank=True, null=True)
-    photos = models.ForeignKey('Photos', models.DO_NOTHING, db_column='Photos_id')  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Comments'
-
-
-class Photos(models.Model):
-    title = models.CharField(max_length=45)
-    picture = models.CharField(max_length=200, blank=True, null=True)
-    owner = models.CharField(max_length=45)
-
-    class Meta:
-        managed = False
-        db_table = 'Photos'
-
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -63,13 +41,13 @@ class AuthPermission(models.Model):
 class AuthUser(models.Model):
     password = models.CharField(max_length=128)
     last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.IntegerField()
+    is_superuser = models.BooleanField()
     username = models.CharField(unique=True, max_length=150)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     email = models.CharField(max_length=254)
-    is_staff = models.IntegerField()
-    is_active = models.IntegerField()
+    is_staff = models.BooleanField()
+    is_active = models.BooleanField()
     date_joined = models.DateTimeField()
 
     class Meta:
@@ -103,7 +81,7 @@ class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
     object_repr = models.CharField(max_length=200)
-    action_flag = models.PositiveSmallIntegerField()
+    action_flag = models.SmallIntegerField()
     change_message = models.TextField()
     content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
@@ -142,15 +120,3 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
-
-
-class MainComment(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    owner_name = models.CharField(max_length=200)
-    body = models.CharField(max_length=255)
-    add_date = models.DateTimeField()
-    photo_id = models.BigIntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'main_comment'

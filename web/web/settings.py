@@ -76,11 +76,11 @@ WSGI_APPLICATION = "web.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "Django",
-        "USER": "root",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "Data",
+        "USER": "postgres",
         "PASSWORD": "niema",
-        "PORT": "3306",
+        "PORT": "5432",
         "HOST": "127.0.0.1",
     }
 }

@@ -3,6 +3,7 @@
 
 {% block single %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/single.css'%}">
+    <div class="main">
     <div class="main-content-frame">
         <div class="user-bar">
             <a href="" class="user">
@@ -18,25 +19,40 @@
         <div class="meme-bar">
             <div class="meme"><img src="{{photo.picture.url}}" alt="meme"></div>
         </div>
-        <div class="lac">
-            <button type="button" class="like">Like</button>
-            <span class="like-number">+2137</span>
-            <a href=""><button type="button" class="like">Comment</button></a>
-            <h2>Comments:</h2>
+        <div class="like">
+            <form action="{% url 'like_post'  photo.id %}" method="POST">
+                {% csrf_token %}
                 
+                {% if user not in photo.likes.all %}
+                <button type="submit" class="liked" name="photo_id" value="{{photo.id}}">+ {{photo.likes.all.count}}</button>
+                {% else %}
+                <button type="submit" class="unliked" name="photo_id" value="{{photo.id}}">+ {{photo.likes.all.count}}</button>
+                {% endif %} 
+            </form>
+        </div>
+        <div class="comments">
+            <form action="{% url 'comment_post' photo.id %}" method="POST">
+                {% csrf_token %}
+                <div class="comment">
+                    <input type="text" name="Username" value="{{request.user}}" hidden>
+                    <textarea required type="text" placeholder="Comment" name="Comment" id="comment_field" rows="1" oninput="auto_height(this)"></textarea>
+                    <input required type="submit" name="comment_post", value="Comment" id="comment_button">
+                </div> 
+            </form>
+        <br>
+        {% if photo.allcomments.all %}
+            {% for comment in photo.allcomments.all reversed %}
+                <div class="single_comment">
+                    <span class="owner_name">{{comment.owner_name}}</span>
+                    <br>
+                    <span class="comment_body">{{comment.body}}</span>
+                </div>
+                <br>
+            {% endfor %}              
+        {% endif %}
             
-            {% if not photo.allcomments.all %}
-                No Comments Yet...
-            {% else %}
-                
-                {% for comment in photo.allcomments.all %}
-                    {{comment.owner_name}} - {{comment.body}}
-
-                {% endfor %}
-                    
-            {% endif %}
-                
         </div>
     </div>
+</div>
 {% endblock single %}
     

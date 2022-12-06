@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <title>MySite</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}">
+    <script>
+        function auto_height(elem) {  /* javascript */
+            elem.style.height = "1px";
+            elem.style.height = (elem.scrollHeight)+"px";
+    }</script>
 </head>
-    <body>
+    <body>                
+        <div class="filler">
         <header>
             <div>
                 <a href="{% url 'home' %}">
@@ -24,7 +30,7 @@
                 </ul>
             </nav>
         </header>
-        
+    </div>
         {% block main %}            
         {% endblock main %}
         
