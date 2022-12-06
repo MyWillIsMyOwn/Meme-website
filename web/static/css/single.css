@@ -5,34 +5,34 @@ body{
     background: linear-gradient(135deg, #71687C, black);
 }
 
-
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .main-content-frame{
-    position: absolute;
-    margin: auto;
     margin-top: 100px;
-
     max-width: 750px;
-    border-radius: 25px;
-    background: #71687C
     
 }
 .main-content-frame .user-bar{
-    border-radius: 25px 25px 0 0;
     background: black;
     max-width: 750px;
     display: flex;
     align-items: center;
     padding-left: 10%;
     height: 40px;
+    margin-bottom: 1%;
 }
 .main-content-frame .description-content{
+    background: black;
     max-width: 750px;
     height: 40px;
-    margin: 0 auto;
     display: flex;
     align-items: center;
     padding-left: 10%;
+    margin-bottom: 1%;
 }
 
 .main-content-frame .user-bar .name{
@@ -45,19 +45,78 @@ body{
 }
 
 .main-content-frame .meme-bar img{
-    width: 90%;
-    padding-left: 10%;
+    width: 100%;
 }
 
-.main-content-frame .lac{
+.main-content-frame .like{
+    padding-top: 20px;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.next-side{
-    display: flex;
+.main-content-frame .like .liked{
+    background-color: red;
+    min-height: 30px;
     justify-content: center;
-    padding-bottom: 100px;
+    padding: 10px 20px 10px 20px;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+}
+
+.main-content-frame .like .unliked{
+    background-color: green;
+    min-height: 30px;
+    justify-content: center;
+    padding: 10px 20px 10px 20px;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+}
+
+.main-content-frame .comments .comment{
+    margin-top: 20px;
+    vertical-align: middle;
+    background: #71687C;
+}
+
+#comment_field{
+    padding-left: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-right: 10px;
+    min-height: 40px;
+    justify-content: center;
+    width: calc(100% - 160px);
+    outline: none;
+    color: #fff;
+    border: none;
+    background: linear-gradient(135deg, #71687C, black);
+}
+
+#comment_button{
+    position: absolute;
+    text-align: center;
+    width: calc(100%/2-20px);
+    margin-bottom: 10px;
+    padding: 10px 20px 10px 20px;
+    margin-top: 10px;
+    outline: none;
+    color: #fff;
+    border: none;
+    background: linear-gradient(135deg, #71687C, black);
+}
+
+.main-content-frame .comments .single_comment .owner_name{
+    color: green;
+    margin-left: 15px;
+}
+.main-content-frame .comments .single_comment .comment_body{
+    color: white;
+    margin-left: 15px;
 }

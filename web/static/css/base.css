@@ -4,10 +4,20 @@
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
-    
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
 }
 body{
     background: linear-gradient(135deg, #71687C, black);
+}
+.add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50;
+    padding-bottom: 50;
 }
 header {
     z-index: 10000;
@@ -18,10 +28,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 100px;
-    padding-right: 75px;
+    padding-left: 7%;
+    padding-right: 5%;
 }
-
+.filler{
+    height: 60;
+}
 .logo{
     height: 60px;
 }
