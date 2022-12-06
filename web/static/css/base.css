@@ -16,8 +16,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 50;
-    padding-bottom: 50;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 header {
     z-index: 10000;
