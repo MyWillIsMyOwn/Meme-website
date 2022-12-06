@@ -1,16 +1,22 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Photos(models.Model):
     title = models.CharField(max_length=100)
     owner = models.CharField(max_length=100)
     picture = models.ImageField(upload_to="images")
+    likes = models.ManyToManyField(User, related_name="likes")
 
     def __str__(self):
-        return f"id: {self.id};  owner: {self.owner};  picture: {self.picture};"
+        return f"id: {self.id};  owner: {self.owner};"
 
-    class Meta:  # meta class is used for changing behavior of model fields
-        managed = False
+    @property
+    def num_likes(self):
+        return self.likes.all().count()
+
+    class Meta:
+        managed = True
         db_table = "Photos"
 
 
@@ -23,4 +29,8 @@ class Comment(models.Model):
     add_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"owner: {self.owner_name};  body: {self.body};  date: {self.add_date}; photo: {self.photo.id}"
+        return f"owner: {self.owner_name};  body: {self.body};  date: {self.add_date}; photo id: {self.photo.id}"
+
+    class Meta:
+        managed = True
+        db_table = "Comment"
